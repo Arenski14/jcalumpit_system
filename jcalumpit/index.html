@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>J. Calumpit Dental Clinic - Landing Page</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="container navbar">
+        <a href="#home-link" class="logo">
+          <img
+            src="media/logo.jpg"
+            alt="J. Calumpit Dental Clinic"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div class="logo-fallback" style="display: none">
+            <i class="fa-solid fa-tooth"></i>
+            <span><strong>J. Calumpit</strong> Dental Clinic</span>
+          </div>
+        </a>
+
+        <!-- Hamburger Checkbox & Toggle Button -->
+        <input type="checkbox" id="sidebar-active" />
+        <label
+          for="sidebar-active"
+          class="open-sidebar-button"
+          aria-label="Open Navigation Menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+            />
+          </svg>
+        </label>
+
+        <!-- Overlay backdrop to close sidebar on tap/click -->
+        <label for="sidebar-active" class="sidebar-overlay"></label>
+
+        <nav>
+          <div class="sidebar-close-btn">
+            <label for="sidebar-active" aria-label="Close Navigation Menu">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"
+                />
+              </svg>
+            </label>
+          </div>
+
+          <a href="#home-link">Home</a>
+          <a href="#about-link">About Us</a>
+          <a href="#services-link">Services</a>
+          <a href="#contact-link">Contact</a>
+
+          <a href="login.html" class="nav-signin" id="authLink">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-person"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"
+              />
+            </svg>
+            <span id="authLabel">Sign In</span>
+          </a>
+          <a href="appointment.html" class="nav-book-btn">Book Appointment</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home-link">
+      <div class="hero-content">
+        <p class="small-title">General Dentistry &amp; Orthodontics</p>
+
+        <h1>
+          New Smile, <br />
+          <span class="highlight-text">New Confident</span>
+        </h1>
+
+        <p class="hero-text">
+          J. Calumpit Dental Clinic pairs modern equipment with a calm,
+          unhurried chairside manner from routine cleanings to full orthodontic
+          care, for every member of the family.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="appointment.html" class="primary-btn">
+            Book an appointment
+          </a>
+          <a href="#services-link" class="secondary-btn"> View our services </a>
+        </div>
+
+        <div class="hero-pills">
+          <span class="pill-tag"
+            ><i class="fa-solid fa-tooth"></i> General Dentistry</span
+          >
+          <span class="pill-tag"
+            ><i class="fa-solid fa-circle-nodes"></i> Orthodontics</span
+          >
+          <span class="pill-tag"
+            ><i class="fa-regular fa-face-smile"></i> Walk-ins welcome</span
+          >
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <div class="image-circle"></div>
+
+        <img src="media/hero-image.png" alt="Dentist" />
+
+        <div class="floating-card card-one">
+          <i class="fa-solid fa-user-doctor"></i>
+
+          <div>
+            <strong>Professional Care</strong>
+            <p>Expert Dentists</p>
+          </div>
+        </div>
+
+        <div class="floating-card card-two">
+          <i class="fa-solid fa-star"></i>
+
+          <div>
+            <strong>4.9 Rating</strong>
+            <p>Happy Patients</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about-link">
+      <div class="about-banner imageReveal">
+        <div class="about-banner-content">
+          <p class="section-tag">ABOUT OUR CLINIC</p>
+
+          <h2>About J. Calumpit Dental Clinic</h2>
+
+          <p>
+            General dentistry and orthodontic care for every age from a team
+            that takes the time to walk you through what's happening and why.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-body">
+        <div class="about-narrative autoShow">
+          <h3>Dentistry that starts with listening</h3>
+
+          <p>
+            J. Calumpit Dental Clinic was built on a simple idea good dental
+            care is as much about communication as it is about technique. Before
+            any procedure we walk through what's happening in your mouth what
+            your options are, and what to expect no jargon no surprises on the
+            bill.
+          </p>
+
+          <div class="about-features">
+            <div><i class="fa-solid fa-check"></i> Experienced Dentists</div>
+
+            <div><i class="fa-solid fa-check"></i> Modern Equipment</div>
+
+            <div><i class="fa-solid fa-check"></i> Comfortable Environment</div>
+
+            <div><i class="fa-solid fa-check"></i> Affordable Services</div>
+          </div>
+
+          <a href="#contact-link" class="primary-btn">Book Your Visit</a>
+        </div>
+
+        <div class="about-quote autoShow">
+          <p>
+            "Your smile deserves more than just beautiful teeth, it deserves to
+            make you feel confident, comfortable, and completely yourself."
+          </p>
+          <span>— Dr. J. Calumpit, D.M.D.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services section" id="services-link">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-tag">OUR SERVICES</p>
+          <h2>
+            Complete Care For
+            <span>Your Perfect Smile.</span>
+          </h2>
+          <p>Explore our professional dental and orthodontic services.</p>
+        </div>
+
+        <div class="services-grid">
+          <!-- Service 1 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="36"
+                height="36"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M13.8 6.5c-1.1 0-2.1.7-2.6 1.7-.2.4-.8.4-1 0-.4-1-1.4-1.7-2.6-1.7-1.5 0-2.8 1.2-2.8 2.8 0 1.1.4 2 .8 2.8 1.1 1.8 1.6 3 1.6 4.3v1.3c0 1.3.9 2.2 2 2.2 1 0 1.7-.7 2-1.5l.6-1.1c.2-.4.7-.4.9 0l.6 1.1c.3.8 1 1.5 2 1.5 1.1 0 2-1 2-2.2v-1.3c0-1.3.4-2.5 1.6-4.3.4-.8.8-1.7.8-2.8 0-1.6-1.3-2.8-2.8-2.8z"
+                />
+                <path d="M12 10v5" />
+                <path d="M9.5 12.5h5" />
+              </svg>
+            </div>
+            <h3>Dental Services</h3>
+            <p>
+              Routine check-ups, cleanings, and preventive care for a healthy
+              smile.
+            </p>
+            <a href="#contact-link" class="service-link">Learn More &rarr;</a>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="36"
+                height="36"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M17 2l.6 2.4c.1.5.5.9 1 1l2.4.6-2.4.6c-.5.1-.9.5-1 1l-.6 2.4-.6-2.4c-.1-.5-.5-.9-1-1l-2.4-.6 2.4-.6c.5-.1.9-.5 1-1z"
+                  fill="currentColor"
+                  stroke="none"
+                />
+                <path
+                  d="M22 13l.3 1.2c.1.2.2.3.4.4l1.2.3-1.2.3c-.2.1-.3.2-.4.4l-.3 1.2-.3-1.2c-.1-.2-.2-.3-.4-.4l-1.2-.3 1.2-.3c.2-.1.3-.2.4-.4z"
+                  fill="currentColor"
+                  stroke="none"
+                />
+                <path
+                  d="M13.8 6.5c-1.1 0-2.1.7-2.6 1.7-.2.4-.8.4-1 0-.4-1-1.4-1.7-2.6-1.7-1.5 0-2.8 1.2-2.8 2.8 0 1.1.4 2 .8 2.8 1.1 1.8 1.6 3 1.6 4.3v1.3c0 1.3.9 2.2 2 2.2 1 0 1.7-.7 2-1.5l.6-1.1c.2-.4.7-.4.9 0l.6 1.1c.3.8 1 1.5 2 1.5 1.1 0 2-1 2-2.2v-1.3c0-1.3.4-2.5 1.6-4.3.4-.8.8-1.7.8-2.8 0-1.6-1.3-2.8-2.8-2.8z"
+                />
+              </svg>
+            </div>
+            <h3>Teeth Whitening</h3>
+            <p>
+              Brighten your smile with gentle, safe, and professional whitening.
+            </p>
+            <a href="#contact-link" class="service-link">Learn More &rarr;</a>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="36"
+                height="36"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M13.8 6.5c-1.1 0-2.1.7-2.6 1.7-.2.4-.8.4-1 0-.4-1-1.4-1.7-2.6-1.7-1.5 0-2.8 1.2-2.8 2.8 0 1.1.4 2 .8 2.8 1.1 1.8 1.6 3 1.6 4.3v1.3c0 1.3.9 2.2 2 2.2 1 0 1.7-.7 2-1.5l.6-1.1c.2-.4.7-.4.9 0l.6 1.1c.3.8 1 1.5 2 1.5 1.1 0 2-1 2-2.2v-1.3c0-1.3.4-2.5 1.6-4.3.4-.8.8-1.7.8-2.8 0-1.6-1.3-2.8-2.8-2.8z"
+                />
+                <path d="M6 12.5h12" />
+                <path d="M9 11v3" />
+                <path d="M15 11v3" />
+              </svg>
+            </div>
+            <h3>Orthodontics (Braces)</h3>
+            <p>
+              Improve alignment and bite with modern orthodontic treatments.
+            </p>
+            <a href="#contact-link" class="service-link">Learn More &rarr;</a>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="36"
+                height="36"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M13.8 6.5c-1.1 0-2.1.7-2.6 1.7-.2.4-.8.4-1 0-.4-1-1.4-1.7-2.6-1.7-1.5 0-2.8 1.2-2.8 2.8 0 1.1.4 2 .8 2.8 1.1 1.8 1.6 3 1.6 4.3 0 1 1.5 1.5 4.8 1.5s4.8-.5 4.8-1.5c0-1.3.4-2.5 1.6-4.3.4-.8.8-1.7.8-2.8 0-1.6-1.3-2.8-2.8-2.8z"
+                />
+                <path d="M12 18v5" />
+                <path d="M9.5 19h5" />
+                <path d="M10 21h4" />
+                <path d="M11 23h2" />
+              </svg>
+            </div>
+            <h3>Dental Implants</h3>
+            <p>
+              Restore missing teeth with long-lasting, natural-feeling implants.
+            </p>
+            <a href="#contact-link" class="service-link">Learn More &rarr;</a>
+          </div>
+
+          <!-- Service 5 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="36"
+                height="36"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M13.8 6.5c-1.1 0-2.1.7-2.6 1.7-.2.4-.8.4-1 0-.4-1-1.4-1.7-2.6-1.7-1.5 0-2.8 1.2-2.8 2.8 0 1.1.4 2 .8 2.8 1.1 1.8 1.6 3 1.6 4.3v1.3c0 1.3.9 2.2 2 2.2 1 0 1.7-.7 2-1.5l.6-1.1c.2-.4.7-.4.9 0l.6 1.1c.3.8 1 1.5 2 1.5 1.1 0 2-1 2-2.2v-1.3c0-1.3.4-2.5 1.6-4.3.4-.8.8-1.7.8-2.8 0-1.6-1.3-2.8-2.8-2.8z"
+                />
+                <path d="M12 9.5v4.5" />
+                <path d="M12 14l-1.5 3.5" />
+                <path d="M12 14l1.5 3.5" />
+              </svg>
+            </div>
+            <h3>Root Canal</h3>
+            <p>
+              Relieve pain and preserve your natural tooth with gentle root
+              canal therapy.
+            </p>
+            <a href="#contact-link" class="service-link">Learn More &rarr;</a>
+          </div>
+
+          <!-- Service 6 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="36"
+                height="36"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M13.8 6.5c-1.1 0-2.1.7-2.6 1.7-.2.4-.8.4-1 0-.4-1-1.4-1.7-2.6-1.7-1.5 0-2.8 1.2-2.8 2.8 0 1.1.4 2 .8 2.8 1.1 1.8 1.6 3 1.6 4.3v1.3c0 1.3.9 2.2 2 2.2 1 0 1.7-.7 2-1.5l.6-1.1c.2-.4.7-.4.9 0l.6 1.1c.3.8 1 1.5 2 1.5 1.1 0 2-1 2-2.2v-1.3c0-1.3.4-2.5 1.6-4.3.4-.8.8-1.7.8-2.8 0-1.6-1.3-2.8-2.8-2.8z"
+                />
+                <path d="M12 15V5" />
+                <path d="M9.5 7.5L12 5l2.5 2.5" />
+              </svg>
+            </div>
+            <h3>Tooth Extraction</h3>
+            <p>
+              Safe, comfortable, and painless extractions when strictly
+              necessary.
+            </p>
+            <a href="#contact-link" class="service-link">Learn More &rarr;</a>
+          </div>
+
+          <!-- Service 7 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="36"
+                height="36"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M13.8 6.5c-1.1 0-2.1.7-2.6 1.7-.2.4-.8.4-1 0-.4-1-1.4-1.7-2.6-1.7-1.5 0-2.8 1.2-2.8 2.8 0 1.1.4 2 .8 2.8 1.1 1.8 1.6 3 1.6 4.3v1.3c0 1.3.9 2.2 2 2.2 1 0 1.7-.7 2-1.5l.6-1.1c.2-.4.7-.4.9 0l.6 1.1c.3.8 1 1.5 2 1.5 1.1 0 2-1 2-2.2v-1.3c0-1.3.4-2.5 1.6-4.3.4-.8.8-1.7.8-2.8 0-1.6-1.3-2.8-2.8-2.8z"
+                />
+                <path
+                  d="M15 9.5H9c-.8 0-1.5.7-1.5 1.5v3c0 .8.7 1.5 1.5 1.5h1v2.5l2.5-2.5h2.5c.8 0 1.5-.7 1.5-1.5v-3c0-.8-.7-1.5-1.5-1.5z"
+                />
+              </svg>
+            </div>
+            <h3>Dental Consultation</h3>
+            <p>
+              Comprehensive evaluations and clear guidance for your dental
+              health.
+            </p>
+            <a href="#contact-link" class="service-link">Learn More &rarr;</a>
+          </div>
+
+          <!-- Service 8 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="36"
+                height="36"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M13.8 6.5c-1.1 0-2.1.7-2.6 1.7-.2.4-.8.4-1 0-.4-1-1.4-1.7-2.6-1.7-1.5 0-2.8 1.2-2.8 2.8 0 1.1.4 2 .8 2.8 1.1 1.8 1.6 3 1.6 4.3v1.3c0 1.3.9 2.2 2 2.2 1 0 1.7-.7 2-1.5l.6-1.1c.2-.4.7-.4.9 0l.6 1.1c.3.8 1 1.5 2 1.5 1.1 0 2-1 2-2.2v-1.3c0-1.3.4-2.5 1.6-4.3.4-.8.8-1.7.8-2.8 0-1.6-1.3-2.8-2.8-2.8z"
+                />
+                <path d="M9.5 11v.01" />
+                <path d="M14.5 11v.01" />
+                <path d="M9.5 13.5c1.5 2 3.5 2 5 0" />
+              </svg>
+            </div>
+            <h3>Pediatric Dentistry</h3>
+            <p>
+              Gentle and friendly dental care designed specifically for
+              children.
+            </p>
+            <a href="#contact-link" class="service-link">Learn More &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY SECTION (hidden until photos are added in Admin > Gallery) -->
+    <section class="gallery section" id="gallery-link" hidden>
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-tag">OUR GALLERY</p>
+          <h2>
+            A Look Inside
+            <span>Our Clinic.</span>
+          </h2>
+          <p>Our clinic, our team and the smiles we care for.</p>
+        </div>
+        <div class="gal-grid" id="galGrid"></div>
+        <div class="gal-more">
+          <button type="button" class="gal-btn" id="galMore" hidden>
+            Show more
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact section" id="contact-link">
+      <div class="container">
+        <div class="section-heading autoShow">
+          <p class="section-tag">CONTACT US</p>
+
+          <h2>
+            We're Here To
+            <span>Help You Smile.</span>
+          </h2>
+
+          <p>
+            Have a question or ready to book? Send a message and we'll get back
+            to you within one business day.
+          </p>
+        </div>
+
+        <div class="contact-section-wrapper">
+          <div class="contact-layout-grid">
+            <!-- Left Column: Contact Form Card -->
+            <div class="contact-form-card">
+              <form id="contactForm" novalidate>
+                <div class="form-double-row">
+                  <div class="form-group">
+                    <label for="full-name">Full name</label>
+                    <input
+                      type="text"
+                      id="full-name"
+                      name="full_name"
+                      placeholder="Juan Dela Cruz"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone-number">Phone number</label>
+                    <input
+                      type="tel"
+                      id="phone-number"
+                      name="phone"
+                      placeholder="+63 917 000 1234"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email-address">Email address</label>
+                  <input
+                    type="email"
+                    id="email-address"
+                    name="email"
+                    placeholder="you@email.com"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <select id="subject" name="subject" required>
+                    <option value="" disabled selected>
+                      What's this about?
+                    </option>
+                    <option value="appointment">Book an Appointment</option>
+                    <option value="cleaning">
+                      General Check-up &amp; Cleaning
+                    </option>
+                    <option value="orthodontics">
+                      Orthodontics &amp; Braces
+                    </option>
+                    <option value="whitening">Teeth Whitening</option>
+                    <option value="implants">Dental Implants</option>
+                    <option value="other">Other Inquiry</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    placeholder="How can we help?"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="hp-field" aria-hidden="true">
+                  <label for="website">Leave this empty</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    tabindex="-1"
+                    autocomplete="off"
+                  />
+                </div>
+
+                <p
+                  class="form-status"
+                  id="contactStatus"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+                <button
+                  type="submit"
+                  class="contact-submit-btn"
+                  id="contactBtn"
+                >
+                  Send message
+                </button>
+              </form>
+            </div>
+
+            <!-- Right Column: Clinic Details & Clinic Hours -->
+            <div class="contact-info-column">
+              <!-- Clinic Info Card -->
+              <div class="clinic-details-card">
+                <!-- Item 1: Address -->
+                <div class="contact-detail-row">
+                  <div class="detail-icon-box">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                      />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </div>
+                  <div class="detail-text">
+                    <h4>Clinic address</h4>
+                    <p>
+                      <a
+                        href="https://www.google.com/maps/place/JCalumpit+Dental+Clinic/@14.2289586,121.1383411,19.71z/data=!4m6!3m5!1s0x33bd63b4fbb72145:0xb410ed364f82aee7!8m2!3d14.2286764!4d121.1385253!16s%2Fg%2F11j03v718_?entry=ttu&g_ep=EgoyMDI2MDkxNC4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >J Calumpit Dental Clinic, 2nd floor Banlicom Sentre 217
+                        Maharlika Hwy, Banlic, Cabuyao, Philippines, 4025</a
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Item 2: Phone -->
+                <div class="contact-detail-row">
+                  <div class="detail-icon-box">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="detail-text">
+                    <h4>Phone</h4>
+                    <p>
+                      <a
+                        href="tel:0912 664 3716"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >0912 664 3716</a
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Item 3: Email -->
+                <div class="contact-detail-row">
+                  <div class="detail-icon-box">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect width="20" height="16" x="2" y="4" rx="2" />
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                  </div>
+                  <div class="detail-text">
+                    <h4>Email</h4>
+                    <p>
+                      <a
+                        href="mailto:dr.calumpit@gmail.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        dr.calumpit@gmail.com
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Clinic Hours Card -->
+              <div class="clinic-hours-card">
+                <h3>Clinic hours</h3>
+                <div class="hours-schedule">
+                  <div class="hours-row">
+                    <span class="day-label">Monday &ndash; Friday</span>
+                    <span class="time-label">9:00 AM &ndash; 6:00 PM</span>
+                  </div>
+                  <div class="hours-row">
+                    <span class="day-label">Saturday</span>
+                    <span class="time-label">9:00 AM &ndash; 3:00 PM</span>
+                  </div>
+                  <div class="hours-row">
+                    <span class="day-label">Sunday</span>
+                    <span class="time-label closed-tag">Closed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container footer-content">
+        <div>
+          <h2>
+            <i class="fa-solid fa-tooth"></i>
+            J. Calumpit Dental Clinic
+          </h2>
+          <p>Professional dental care for a healthier brighter smile.</p>
+        </div>
+
+        <div>
+          <h3>Quick Links</h3>
+          <a href="#home-link">Home</a>
+          <a href="#about-link">About Us</a>
+          <a href="#services-link">Services</a>
+          <a href="#contact-link">Contact</a>
+        </div>
+
+        <div>
+          <h3>Follow Us</h3>
+          <div class="footer-social">
+            <a
+              href="https://www.facebook.com/jcalumpitdental"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/j.calumpitdental_/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a
+              href="https://www.tiktok.com/@j..calumpit.denta"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+            >
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2026 J. Calumpit Dental Clinic. All Rights Reserved.
+      </div>
+    </footer>
+
+    <script src="assets/site.js"></script>
+  </body>
+</html>

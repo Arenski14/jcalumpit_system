@@ -1,0 +1,825 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Appointments — J. Calumpit Dental Clinic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+/* Shared styles for the patient dashboard and the staff/admin panel.
+   Same brand as the rest of the site: navy + brick red, Playfair Display + Inter. */
+:root {
+  --maroon: #9b2c22;
+  --maroon-dark: #7d221a;
+  --navy: #16264a;
+  --navy-deep: #0f1b33;
+  --ink: #111827;
+  --muted: #4b5563;
+  --line: #e5e7eb;
+  --field: #f7f8fb;
+  --sky: #eaf1f8;
+  --white: #fff;
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "Inter", system-ui, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+}
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--sky);
+  min-height: 100vh;
+}
+a {
+  color: inherit;
+}
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+.serif {
+  font-family: var(--serif);
+  color: var(--navy);
+}
+.muted {
+  color: var(--muted);
+}
+.hidden {
+  display: none !important;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font: 600 0.92rem var(--sans);
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.btn-primary {
+  background: var(--maroon);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--maroon-dark);
+}
+.btn-ghost {
+  background: #fff;
+  border-color: var(--line);
+  color: var(--navy);
+}
+.btn-ghost:hover {
+  background: var(--field);
+  border-color: #cfd6e2;
+}
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.82rem;
+}
+.btn-ok {
+  background: #166534;
+  color: #fff;
+}
+.btn-ok:hover {
+  background: #14532d;
+}
+.btn-danger {
+  background: #fff;
+  border-color: #f0c4c0;
+  color: #b42318;
+}
+.btn-danger:hover {
+  background: #fef3f2;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.btn:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--maroon);
+  outline-offset: 2px;
+}
+
+/* ---------- badges ---------- */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.badge-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+.badge-approved {
+  background: #dcfce7;
+  color: #166534;
+}
+.badge-rescheduled {
+  background: #dbeafe;
+  color: #1e40af;
+}
+.badge-declined {
+  background: #fee2e2;
+  color: #991b1b;
+}
+.badge-cancelled {
+  background: #e5e7eb;
+  color: #374151;
+}
+.badge-completed {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+/* ---------- forms ---------- */
+.f-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.f-row label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+select,
+textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 0.92rem;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--field);
+  color: var(--ink);
+}
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--maroon);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(155, 44, 34, 0.15);
+}
+
+/* ---------- cards & tables ---------- */
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px;
+}
+.card h3 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--navy);
+  margin-bottom: 14px;
+}
+.table-wrap {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+th {
+  text-align: left;
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+td {
+  padding: 12px;
+  border-bottom: 1px solid #f0f2f6;
+  vertical-align: top;
+}
+tr:last-child td {
+  border-bottom: 0;
+}
+tbody tr.clickable {
+  cursor: pointer;
+}
+tbody tr.clickable:hover td {
+  background: var(--field);
+}
+td small {
+  display: block;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 36px 12px;
+}
+
+/* ---------- modal & toast ---------- */
+dialog {
+  border: 0;
+  border-radius: 14px;
+  padding: 0;
+  width: min(480px, calc(100vw - 32px));
+  box-shadow: 0 24px 60px rgba(15, 27, 51, 0.35);
+  color: var(--ink);
+}
+dialog.wide {
+  width: min(720px, calc(100vw - 32px));
+}
+dialog::backdrop {
+  background: rgba(15, 27, 51, 0.55);
+}
+.modal-body {
+  padding: 26px;
+}
+.modal-body h3 {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.modal-sub {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 18px;
+}
+.modal-err {
+  color: #b42318;
+  font-size: 0.85rem;
+  margin: 0 0 12px;
+}
+.modal-err:empty {
+  display: none;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translate(-50%, 20px);
+  background: var(--navy-deep);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+  z-index: 50;
+  max-width: calc(100vw - 32px);
+}
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.toast.error {
+  background: #b42318;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+/* Navbar shared with the landing page (same look, scoped so it can't clash with login/register styles). */
+
+.site-header {
+  --nb-primary: #8c2b1d;
+  --nb-primary-hover: #732015;
+  --nb-navy: #162536;
+  --nb-border: #e2e8f0;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #ffffff;
+  z-index: 1000;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+  font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
+  line-height: 1.6;
+}
+.site-header label {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+.site-header a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s ease;
+}
+.site-header img {
+  max-width: 100%;
+  display: block;
+}
+.site-header .container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+.site-header .navbar {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-header .logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.site-header .logo img {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+}
+.site-header .logo-fallback {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--nb-navy);
+  font-size: 1.25rem;
+}
+.site-header .logo-fallback i {
+  color: var(--nb-primary);
+  font-size: 1.5rem;
+}
+.site-header .logo-fallback strong {
+  color: var(--nb-primary);
+}
+
+.site-header #sidebar-active {
+  display: none;
+}
+.site-header .open-sidebar-button {
+  display: none;
+  cursor: pointer;
+  color: var(--nb-navy);
+  padding: 4px;
+}
+.site-header .sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 27, 41, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+}
+.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-left: auto;
+}
+.site-header nav a {
+  color: #334155;
+  font-size: 15px;
+  font-weight: 600;
+  position: relative;
+  padding: 8px 0;
+  transition: color 0.2s ease;
+}
+.site-header nav a:hover,
+.site-header nav a.active {
+  color: var(--nb-primary);
+}
+.site-header .nav-signin {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: var(--nb-navy);
+  padding: 11px 22px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--nb-border);
+}
+.site-header .nav-signin:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  transform: translateY(-2px);
+}
+.site-header .nav-signin.active {
+  border-color: var(--nb-primary);
+}
+.site-header .nav-book-btn {
+  background: var(--nb-primary);
+  color: #ffffff !important;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 24px !important;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(140, 43, 29, 0.25);
+}
+.site-header .nav-book-btn:hover {
+  background: var(--nb-primary-hover);
+  transform: translateY(-1px);
+}
+.site-header .sidebar-close-btn {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 12px;
+}
+.site-header #sidebar-active:checked ~ .sidebar-overlay {
+  display: block;
+}
+.site-header #sidebar-active:checked ~ nav {
+  right: 0;
+}
+
+@media (min-width: 769px) {
+  .site-header .open-sidebar-button,
+  .site-header .sidebar-close-btn,
+  .site-header .sidebar-overlay {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header .open-sidebar-button {
+    display: flex;
+  }
+  .site-header nav {
+    position: fixed;
+    top: 0;
+    right: -290px;
+    width: 280px;
+    height: 100vh;
+    align-items: flex-start;
+    text-align: left;
+    background-color: #ffffff;
+    box-shadow: -6px 0 20px rgba(0, 0, 0, 0.12);
+    flex-direction: column;
+    padding: 24px 20px;
+    transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1001;
+    gap: 12px;
+  }
+  .site-header .sidebar-close-btn label {
+    cursor: pointer;
+    color: var(--nb-navy);
+  }
+  .site-header nav a {
+    color: var(--nb-navy);
+    font-size: 0.95rem;
+    width: 100%;
+    text-align: left;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--nb-border);
+  }
+  .site-header .nav-signin,
+  .site-header .nav-book-btn {
+    justify-content: flex-start;
+    text-align: left;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header nav {
+    transition: none;
+  }
+}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <style>
+      body {
+        padding-top: 80px; /* fixed navbar */
+      }
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 36px 24px 72px;
+      }
+      .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+      .head h1 {
+        font: 700 2rem/1.15 var(--serif);
+        color: var(--navy);
+      }
+      .head p {
+        margin: 6px 0 0;
+      }
+      .appt {
+        display: grid;
+        grid-template-columns: 76px 1fr auto;
+        gap: 18px;
+        align-items: start;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px 20px;
+        margin-bottom: 14px;
+      }
+      .date-box {
+        text-align: center;
+        background: var(--sky);
+        border-radius: 10px;
+        padding: 10px 4px;
+        color: var(--navy);
+      }
+      .date-box .m {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--maroon);
+      }
+      .date-box .d {
+        font: 700 1.7rem/1.1 var(--serif);
+      }
+      .date-box .y {
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+      .appt h3 {
+        font-size: 1.05rem;
+        margin-bottom: 4px;
+      }
+      .appt p {
+        margin: 3px 0;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      .note {
+        margin-top: 10px !important;
+        padding: 10px 12px;
+        background: var(--field);
+        border-left: 3px solid var(--maroon);
+        border-radius: 6px;
+        color: var(--ink) !important;
+      }
+      .side {
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-end;
+      }
+      .pay-banner {
+        border-radius: 12px;
+        padding: 16px 20px;
+        margin-bottom: 20px;
+        font-size: 1.02rem;
+        border: 1px solid #b7e1c1;
+        background: #eaf7ee;
+        color: #14532d;
+      }
+      .pay-banner.warn {
+        border-color: #f5d88a;
+        background: #fff7e6;
+        color: #7a5200;
+      }
+      .pay-banner button {
+        margin-left: 10px;
+      }
+      .balance {
+        background: var(--navy-deep);
+        color: #fff;
+        border-radius: 16px;
+        padding: 24px 28px;
+        margin-bottom: 26px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px 40px;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .balance .lbl {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: #cfd9ea;
+      }
+      .balance .amt {
+        font: 700 2.7rem/1.1 var(--serif);
+        margin: 4px 0 6px;
+      }
+      .balance .amt.clear {
+        color: #86efac;
+      }
+      .balance .msg {
+        font-size: 0.9rem;
+        color: #cfd9ea;
+        max-width: 420px;
+        margin: 0;
+      }
+      .balance .chips {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .balance .chip {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 10px 18px;
+        min-width: 130px;
+      }
+      .balance .chip span {
+        display: block;
+        font-size: 0.75rem;
+        color: #cfd9ea;
+      }
+      .balance .chip strong {
+        font-size: 1.1rem;
+      }
+      .bill strong {
+        color: var(--maroon);
+      }
+      .bill strong.paid {
+        color: #166534;
+      }
+      .pay-table {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 6px 8px;
+        overflow-x: auto;
+      }
+      .pay-table small {
+        display: block;
+        color: var(--muted);
+      }
+      .section-title {
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 28px 0 12px;
+      }
+      @media (max-width: 640px) {
+        .appt {
+          grid-template-columns: 64px 1fr;
+        }
+        .side {
+          grid-column: 1/-1;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR (same as the landing page) -->
+    <header class="site-header">
+      <div class="container navbar">
+        <a href="index.html" class="logo">
+          <img
+            src="media/logo.jpg"
+            alt="J. Calumpit Dental Clinic"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div class="logo-fallback" style="display: none">
+            <i class="fa-solid fa-tooth"></i>
+            <span><strong>J. Calumpit</strong> Dental Clinic</span>
+          </div>
+        </a>
+
+        <input type="checkbox" id="sidebar-active" />
+        <label
+          for="sidebar-active"
+          class="open-sidebar-button"
+          aria-label="Open Navigation Menu"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+          </svg>
+        </label>
+        <label for="sidebar-active" class="sidebar-overlay"></label>
+
+        <nav>
+          <div class="sidebar-close-btn">
+            <label for="sidebar-active" aria-label="Close Navigation Menu">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+              </svg>
+            </label>
+          </div>
+
+          <a href="index.html#home-link">Home</a>
+          <a href="index.html#about-link">About Us</a>
+          <a href="index.html#services-link">Services</a>
+          <a href="index.html#contact-link">Contact</a>
+
+          <a href="login.html" class="nav-signin" id="authLink">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+            </svg>
+            <span id="authLabel">Sign In</span>
+          </a>
+          <a href="appointment.html" class="nav-book-btn">Book Appointment</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="head">
+        <div>
+          <h1>My appointments</h1>
+          <p class="muted" id="hello">Loading…</p>
+        </div>
+        <a class="btn btn-primary" href="appointment.html"
+          >+ Book an appointment</a
+        >
+      </div>
+
+      <div class="pay-banner" id="payBanner" role="status" hidden></div>
+
+      <section class="balance" id="balance" aria-live="polite"></section>
+
+      <div id="list"></div>
+
+      <div id="payments"></div>
+    </main>
+
+    <dialog id="confirm">
+      <div class="modal-body">
+        <h3>Cancel this appointment?</h3>
+        <p class="modal-sub" id="confirmText"></p>
+        <p class="modal-err" id="confirmErr"></p>
+        <div class="modal-actions">
+          <button class="btn btn-ghost" id="confirmNo" type="button">
+            Keep it
+          </button>
+          <button class="btn btn-primary" id="confirmYes" type="button">
+            Yes, cancel
+          </button>
+        </div>
+      </div>
+    </dialog>
+    <div class="toast" id="toast" role="status"></div>
+
+    <script src="assets/site.js"></script>
+    <script src="assets/dashboard.js"></script>
+  </body>
+</html>
